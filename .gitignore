@@ -2,4 +2,7 @@
 venv/
 
 # Receipt pngs
-Receipts/
+receipts/
+
+# Json outputs
+outputs/
