@@ -19,6 +19,6 @@ def preprocess_image(image_path):
     resized = cv2.resize(gray, (target_width, int(gray.shape[0] * scale_ratio)), interpolation=cv2.INTER_LINEAR)
 
     # Save preprocessed image to temp file
-    temp_path = "preprocessed_temp.png"
+    temp_path = "receipts/preprocessed_temp.png"
     cv2.imwrite(temp_path, resized)
     return temp_path
