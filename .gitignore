@@ -6,3 +6,6 @@ receipts/
 
 # Json outputs
 outputs/
+
+# OCR models
+models/
