@@ -46,20 +46,18 @@ def perform_ocr(image_path):
     Perform OCR directly on the full receipt image without layout detection.
     Returns concatenated text from the entire image.
     """
-    # Load image
-    image = cv2.imread(image_path)
+    result = ocr.ocr(image_path)
+    extracted_text = ""
 
-    # Run OCR
-    results = ocr.predict(image)
+    if result and isinstance(result[0], dict):
+        page_results = result[0]
 
-    # Extract recognized text
-    all_text = []
-    if results and len(results[0]) > 0:
-        for line in results[0]:
-            all_text.append(line[1][0])
+        if 'rec_texts' in page_results and isinstance(page_results['rec_texts'], list):
+            for text in page_results['rec_texts']:
+                if isinstance(text, str): 
+                    extracted_text += text + "\n"
 
-    # Combine lines into a single string
-    return "\n".join(all_text)
+    return extracted_text.strip()
 
 # --- Main execution block ---
 if __name__ == "__main__":
